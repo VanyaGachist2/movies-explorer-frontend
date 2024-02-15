@@ -1,0 +1,134 @@
+.header {
+  width: 100%;
+  background: rgb(7, 48, 66);
+  padding-top: 18px;
+  margin: 0;
+  padding-bottom: 18px;
+}
+
+.header_color_dark {
+  background-color: rgb(32, 32, 32);
+}
+
+.header__container {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  background: rgb(7, 48, 66);
+  align-items: center;
+}
+
+.header__container_none {
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header__container_color_dark {
+  background-color: rgb(32, 32, 32);
+  width: 100%;
+
+}
+
+.header__logo {
+  object-fit: cover;
+  object-position: center;
+  width: 32px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+}
+
+.header__auth {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.header__link {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+.header__link:hover {
+  opacity: .7;
+}
+
+.header__signup {
+  color: white;
+  max-width: 77px;
+}
+
+.header__signin {
+  color: black;
+  max-width: 36px;
+  border: 1px solid rgb(61, 220, 132);
+  padding: 8px 20px;
+  border-radius: 3px;
+  background-color: rgb(61, 220, 132);
+}
+
+.header__links {
+  display: flex;
+  gap: 16px;
+}
+
+.header__film {
+  max-width: 142px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  color: white;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+.header__film:hover {
+  opacity: .7;
+}
+
+.header__acc {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+
+.header__main {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 12px;
+  margin: 0;
+  padding: 0;
+  max-width: 53px;
+  width: 100%;
+  text-decoration: none;
+  color: white;
+}
+
+.header__color {
+  background-image: url('../../images/back__COLOR_special-1.svg');
+  border: none;
+  width: 26px;
+  height: 26px;
+  background-position: center;
+  background-size: cover;
+  background-color: transparent;
+}
+
+@media screen and (max-width: 1211px) {
+  .header__container {
+    margin: 0 30px;
+  }
+}
+
+@media screen and (max-width: 527px) {
+  .header__container {
+    margin: 0 14px;
+  }
+}

@@ -1,0 +1,105 @@
+.profile {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(32, 32, 32);
+  min-height: 100vh;
+}
+
+.profile__container {
+  padding-top: 74px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  color: white;
+}
+
+.profile__title {
+  max-width: 204px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 29px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.profile__form {
+  margin: 123px 0 0 0;
+  width: 410px;
+  position: relative;
+}
+
+.profile__input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 13px;
+  border-bottom: 1px solid rgb(66, 66, 66);
+  padding-bottom: 16px;
+  color: white;
+}
+
+.profile__input:last-of-type {
+  margin-top: 17px;
+  border-bottom: none;
+}
+
+.profile__acount {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 13px;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+}
+
+.profile__acount_name {
+  top: 5px;
+  right: 0;
+}
+
+.profile__acount_email {
+  top: 50px;
+  right: 0;
+}
+
+.profile__edit {
+  max-width: 410px;
+  width: 100%;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  margin: 220px 0 0 0;
+  border: none;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+.profile__edit:hover {
+  opacity: .7;
+}
+
+.profile__out {
+  max-width: 410px;
+  border: none;
+  background-color: transparent;
+  color: rgb(238, 52, 101);
+  margin: 16px 0 0 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 16px;
+  padding-bottom: 70px;
+  cursor: pointer;
+}
+
+.profile__out:hover {
+  opacity: .7;
+}
+
+
