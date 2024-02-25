@@ -6,16 +6,26 @@ function Profile() {
       <article className="profile__container">
         <h1 className="profile__title">Привет, Виталий!</h1>
         <form className="profile__form">
-          <input 
-            className="profile__input" 
-            placeholder='Имя'
-          />
-          <p className="profile__acount profile__acount_name">Имя</p>
-          <input
-            className="profile__input"
-            placeholder='E-mail'
-          />
-          <p className="profile__acount profile__acount_email">E-mail</p>
+          <label className='profile__label'>Имя
+            <input 
+              className='profile__input'
+              type='text'
+              name='name'
+              id='name'
+              required
+              placeholder='Виталий'
+            />
+          </label>
+          <label className='profile__label'>E-mail
+            <input 
+              className='profile__input'
+              type='email'
+              name='email'
+              id='email'
+              required
+              placeholder='pochta@yandex.ru'
+            />
+          </label>
         </form>
         <button type='button' className='profile__edit'>Редактировать</button>
         <button type='button' className='profile__out'>Выйти из аккаунта</button>

@@ -1,4 +1,4 @@
-.navtab {
+.project {
   background: rgb(32, 32, 32);
   width: 100%;
   padding-top: 110px;
@@ -6,12 +6,12 @@
   box-sizing: border-box;
 }
 
-.navtab__container {
+.project__container {
   max-width: 1140px;
   margin: 0 auto;
 }
 
-.navtab__title {
+.project__title {
   font-size: 22px;
   font-weight: 400;
   line-height: 27px;
@@ -21,7 +21,7 @@
   color: white;
 }
 
-.navtab__title::after {
+.project__title::after {
   content: '';
   display: block;
   width: 100%;
@@ -30,7 +30,7 @@
   margin: 23px auto 0 auto;
 }
 
-.navtab__lists {
+.project__lists {
   margin-top: 70px;
   display: flex;
   list-style: none;
@@ -39,13 +39,13 @@
   gap: 40px;
 }
 
-.navtab__list {
+.project__list {
   flex-direction: column;
   max-width: 550px;
   text-align: left;
 }
 
-.navtab__heading {
+.project__heading {
   max-width: 100%;
   font-size: 20px;
   font-weight: 400;
@@ -55,7 +55,7 @@
   padding: 0;
 }
 
-.navtab__text {
+.project__text {
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -63,17 +63,18 @@
   padding: 0;
 }
 
-.navtab__landing {
+.project__landing {
   display: grid;
   gap: 0px;
-  grid-template-columns: 2fr 4fr;
+  grid-template-columns: 1fr 4fr;
   grid-template-areas: 
     "timeone timetwo"
     "descrone descrtwo";
   padding-bottom: 110px;
+  margin: 0;
 }
 
-.navtab__time {
+.project__time {
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
@@ -84,16 +85,16 @@
   height: 36px;
   background-color: rgb(61, 220, 132);
   grid-area: timeone;
-  margin: 110px 0 0 0;
+  margin: 95px 0 0 0;
 }
 
-.navtab__time_color_dark {
+.project__time_color_dark {
   grid-area: timetwo;
   background-color: rgb(48, 48, 48);
   color: white;
 }
 
-.navtab__description {
+.project__description {
   grid-area: descrone;
   justify-self: center;
   margin: 14px 0 0 0;
@@ -101,47 +102,71 @@
   color: rgb(139, 139, 139);;
 }
 
-.navtab__description_color_dark {
+.project__description_color_dark {
   grid-area: descrtwo;
 }
 
 @media screen and (max-width: 1176px) {
-  .navtab__container {
+  .project {
+    padding-top: 90px;
+  }
+
+  .project__container {
     margin: 0 50px;
+  }
+
+  .project__time {
+    margin-top: 70px;
   }
 }
 
 
 @media screen and (max-width: 561px) {
-  .navtab__container {
+  .project {
+    padding-top: 70px;
+  }
+
+  .project__container {
     margin: 0 18px;
   }
 
-  .navtab__title {
+  .project__landing {
+    grid-template-columns: 2fr 4fr;
+    padding-bottom: 69px;
+  }
+
+  .project__title {
     font-size: 18px;
     line-height: 22px;
   }
 
-  .navtab__title::after {
+  .project__title::after {
     margin-top: 28px;
   }
 
-  .navtab__lists {
+  .project__lists {
     flex-direction: column;
+    gap: 56px;
     margin-top: 60px;
   }
 
-  .navtab__heading {
+  .project__heading {
     font-size: 18px;
     line-height: 22px;
   }
 
-  .navtab__text {
+  .project__text {
     font-size: 11px;
     line-height: 16px;
+    margin-top: 16px;
   }
 
-  .navtab__landing {
-    margin-top: 60px;
+  .project__time {
+    margin-top: 40px;
+  }
+
+  .project__description {
+    font-size: 11px;
+    line-height: 13px;
   }
 }

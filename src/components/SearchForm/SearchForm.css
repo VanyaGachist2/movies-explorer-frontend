@@ -1,16 +1,20 @@
 .search {
   background-color: rgb(32, 32, 32);
-  margin: 0;
+}
+
+.search__container {
+  margin: 0 auto;
   padding: 0;
-  width: 100%;
+  max-width: 1140px;
 }
 
 .search__form {
   padding-top: 70px;
   margin: 0 auto 0 auto;
-  max-width: 1140px;
+  max-width: 100%;
   display: flex;
   position: relative;
+  box-sizing: border-box;
 }
 
 .search__input {
@@ -36,49 +40,117 @@
   background-color: transparent;
   position: absolute;
   top: 70px;
-  right: 5px;
+  right: 0px;
+  cursor: pointer;
 }
 
-.search__switch {
-  display: inline-block;
+.search__button:hover {
+  opacity: .8;
+}
+
+.checkbox {
+  margin: 32px auto 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  max-width: 1140px;
+}
+
+.checkbox__button {
+  margin: 0;
+	height: 28px;
+	line-height: 28px;
   position: relative;
+	font-size: 14px;
+	user-select: none;
+  justify-self: center;
+  max-height: 20px;
+}
+
+.checkbox__switch {
+  display: none;
+}
+
+.checkox__switch_ios {
+  position: relative;
+  display: inline-block;
   width: 36px;
   height: 20px;
-  background-color: rgb(61, 220, 132);
-  border-radius: 20px;
-}
-
-.search__checkbox {
-  width: 0px;
-  height: 0px;
-  opacity: 0;
-}
-
-.search__slide {
-  position: absolute;
+  background-color: #ccc;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgb(61, 220, 132);
-  border-radius: 20px;
 }
 
-.search__slide::before {
-  content: '';
+.checkox__switch_ios::before {
+  content: "";
   position: absolute;
-  cursor: pointer;
   top: 2px;
-  bottom: 2px;
+  right: 2px;
   width: 16px;
   height: 16px;
-  background-color: white;
-  border-radius: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s ease, background-color .2s ease;
+}
+
+.checkbox__switch + .checkox__switch_ios {
+  background-color: rgb(61, 220, 132);
+}
+
+.checkbox__switch:checked + .checkox__switch_ios {
+  background-color: rgb(235, 235, 235);
+}
+
+.checkbox__switch:checked + .checkox__switch_ios:before {
+  transform: translateX(-16px);
+  background-color: rgb(245, 245, 245);
+}
+
+.checkbox__name {
+  color: white;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  margin-left: 14px;
+  align-self: flex-end;
 }
 
 @media screen and (max-width: 1181px) {
   .search__form {
     margin: 0 30px;
+  }
+
+  .checkbox {
+    justify-content: flex-start;
+    gap: 16px;
+    flex-direction: row-reverse;
+    margin: 29px 30px 0 0px;
+  }
+}
+
+@media screen and (max-width: 538px) {
+  .search__form {
+    margin: 0 14px;
+  }
+
+  .search__input {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .checkbox {
+    margin: 40px 0 0 0;
+    justify-content: center;
+  }
+
+  .checkbox__name {
+    font-size: 11px;
+    line-height: 18px;
+    margin: 0;
   }
 }

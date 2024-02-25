@@ -1,7 +1,10 @@
 .cards {
-  padding-top: 70px;
-  width: 100%;
+  padding-top: 120px;
   background-color: rgb(32, 32, 32);
+}
+
+.cards__container {
+  max-width: 1140px;
   margin: 0 auto;
 }
 
@@ -17,68 +20,19 @@
   margin: 0 auto;
 }
 
-.cards__element {
-  border-radius: 10px;
-  background-color: rgb(34, 34, 34);
-}
-
-.cards__image {
+.cards__another {
+  background-color: rgb(32, 32, 32);
   width: 100%;
-  height: 151px;
-  border-radius: 10px;
-  object-fit: cover;
-  object-position: center;
-}
-
-.cards__info {
-  max-width: 246px;
-  display: flex;
-  width: 100%;
-  color: white;
-  margin: 14px auto;
-  justify-content: space-between;
-}
-
-.cards__names {
-  display: flex;
-  flex-direction: column;
-  gap: 10px 0;
-}
-
-.cards__heading {
-  width: 100%;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 16px;
   margin: 0;
   padding: 0;
-}
-
-.cards__time {
-  max-width: 34px;
-  width: 100%;
-  font-size: 11px;
-  font-weight: 400;
-  line-height: 13px;
-  margin: 0;
-  padding: 0;
-  color: rgb(139, 139, 139);
-}
-
-.cards__check {
-  background-image: url("../../images/save8.svg");
-  background-position: center;
-  background-color: transparent;
-  border: none;
-  background-size: 100% 100%;
-  width: 20px;
-  height: 20px;
-  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .cards__button {
-  margin-top: 80px;
-  margin-bottom: 100px;
+  margin: 80px auto 80px auto;
+  max-width: 1140px;
   width: 320px;
   height: 36px;
   border: 1px solid rgb(66, 66, 66);
@@ -89,14 +43,24 @@
 
 @media screen and (max-width: 1181px) {
   .cards__list {
-    margin: 0 30px;
+    margin: 16px 30px 0 30px;
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (max-width: 551px) {
+  .cards {
+    padding-top: 90px;
+  }
+
   .cards__list {
     margin: 0 10px;
     grid-template-columns: 1fr;
+    padding: 0;
+    gap: 20px;
+  }
+
+  .cards__button {
+    max-width: 240px;
   }
 }

@@ -8,15 +8,29 @@ import Login from '../Login/Login.jsx';
 import NotFoundPage from '../NotFoundPage/NotFoundPage.jsx';
 import Movies from '../Movies/Movies.jsx';
 import Profile from '../Profile/Profile.jsx';
+import Nav from '../Navigation/Navigation.jsx';
+import { useState } from 'react';
+import SavedMovies from '../SavedMovies/SavedMovies.jsx';
 
 function App() {
+  const [ burgerMenu, setBurgerMenu ] = useState(false);
+
+  const openBurgerMenu = () => {
+    setBurgerMenu(true);
+  }
+
+  const closeBurgerMenu = () => {
+    setBurgerMenu(false);
+  }
+
   return (
     <div className="app">
+      <Nav burger={burgerMenu} closeBurgerMenu={closeBurgerMenu} />
       <>
       <Routes>
         <Route path='/' element={
           <>
-            <Header />
+            <Header openBurger={openBurgerMenu} />
             <Main />
             <Footer />
           </>
@@ -34,15 +48,24 @@ function App() {
         />
         <Route path='/movies' element={
           <>
-            <Header />
+            <Header openBurger={openBurgerMenu} />
             <Movies />
             <Footer />
           </>
         }
         />
+        <Route path='/saved-movies' element={
+          <>
+            <Header openBurger={openBurgerMenu} />
+            <SavedMovies />
+            <Footer />
+          </>
+        } 
+
+        />
         <Route path='/profile' element={
           <>
-            <Header />
+            <Header openBurger={openBurgerMenu} />
             <Profile />
           </>
         }

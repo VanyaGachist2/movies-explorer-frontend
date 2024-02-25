@@ -1,15 +1,17 @@
 import './Register.css';
 import logo from '../../images/logo.svg';
-import { Link } from 'react-router-dom';
+import FormForAuth from '../FormForAuth/FormForAuth.jsx';
 
 function Register() {
   return (
-    <section className="registration">
-      <article className="registration__container">
-        <img alt="логотип" src={logo} className="registration__logo" />
-        <h1 className="registration__title">Добро пожаловать!</h1>
-        <form className="registration__form">
-        <label className="registration__label">Имя</label>
+    <FormForAuth 
+    logo={logo} 
+    title='Добро пожаловать!'
+    subtitle='Уже зарегистрированы?'
+    link='/sign-in'
+    auth='Войти'
+    >
+      <label className="registration__label">Имя</label>
           <input 
             name="name"
             id="name"
@@ -37,12 +39,7 @@ function Register() {
               placeholder='password'
             />
           <button className="registration__button" type="submit">Зарегистрироваться</button>
-        </form>
-        <p className="registration__subtitle">Уже зарегистрированы? 
-          <Link to='/sign-in' className="registration__subtitle_color_blue" href="#">Войти</Link>
-        </p>
-      </article>
-    </section>
+        </FormForAuth>
   )
 }
 

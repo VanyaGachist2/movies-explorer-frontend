@@ -9,15 +9,21 @@ function Nav({ burger, closeBurgerMenu }) {
     closeBurgerMenu();
   };
 
+  const closeAndToLink = burger ? handleOpenClick : '';
+
   return (
     <section className={`nav ${burger ? 'nav_opened' : ''}`}>
       <div className='nav__links'>
-        <Link onClick={burger ? handleOpenClick : ''} className={`nav__link 
+        <Link onClick={closeAndToLink} className={`nav__link 
         ${location.pathname === '/' ? 'nav__link_active' : ''}`} to='/'>Главная</Link>
-        <Link onClick={burger ? handleOpenClick : ''} className={`nav__link 
+        <Link onClick={closeAndToLink} className={`nav__link 
         ${location.pathname === '/movies' ? 'nav__link_active' : ''}`} to='/movies'>Фильмы</Link>
-        <Link onClick={burger ? handleOpenClick : ''} className={`nav__link 
-        ${location.pathname === '/movies' ? 'nav__link_active' : ''}`} to='/movies'>Сохранённые фильмы</Link>
+        <Link onClick={closeAndToLink} className={`nav__link 
+        ${location.pathname === '/saved-movies' ? 'nav__link_active' : ''}`} to='/movies'>Сохранённые фильмы</Link>
+        <Link to='/profile' className='nav__acount'>
+          Аккаунт
+          <button className='nav__color' type='button'></button>  
+        </Link>
       </div>
       <button onClick={handleOpenClick} type='button' className='nav__close'></button>
     </section>

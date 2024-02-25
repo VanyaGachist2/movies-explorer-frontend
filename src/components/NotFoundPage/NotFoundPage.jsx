@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './NotFoundPage.css';
 
 function NotFoundPage() {
@@ -5,7 +6,7 @@ function NotFoundPage() {
     <section className="error">
       <h1 className="error__title">404</h1>
       <p className="error__subtitle">Страница не найдена</p>
-      <a href="#" className="error__link">Назад</a>
+      <Link to='/' href="#" className="error__link">Назад</Link>
     </section>
   )
 }

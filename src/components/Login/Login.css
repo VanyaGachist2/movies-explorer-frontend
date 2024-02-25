@@ -76,6 +76,9 @@
   font-weight: 500;
   line-height: 17px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .login__button:hover {
@@ -108,5 +111,9 @@
 
   .login__input {
     max-width: 260px;
+  }
+
+  .login__button {
+    margin-top: 180px;
   }
 }

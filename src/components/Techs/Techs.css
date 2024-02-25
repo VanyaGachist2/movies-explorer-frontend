@@ -44,7 +44,6 @@
   font-size: 50px;
   font-weight: 400;
   line-height: 58px;
-  letter-spacing: -4%;
   margin: 90px 0 0 0;
 }
 
@@ -88,16 +87,36 @@
 @media screen and (max-width: 1186px) {
   .techs__container {
     margin: 0 50px;
+    padding-top: 70px;
+  }
+
+  .techs__title {
+    margin-top: 80px;
+  }
+
+  .techs__text {
+    margin-top: 22px;
   }
 
   .techs__cards {
     max-width: 666px;
+    margin-top: 83px;
+  }
+
+  .techs__card {
+    width: 84px;
+    height: 57px;
   }
 }
 
 @media screen and (max-width: 690px) {
+  .techs {
+    padding-top: 70px;
+  }
+
   .techs__container {
     margin: 0 14px;
+    padding: 0;
   }
 
   .techs__text {
