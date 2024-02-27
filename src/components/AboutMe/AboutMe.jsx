@@ -15,8 +15,8 @@ function AboutMe() {
           После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами
            и ушёл с постоянной работы.</p>
         </div>
-        <a href="https://github.com/VanyaGachist2" className="aboutme__link">GitHub</a>
-        <img alt="моя фотка" src={avatar} className="aboutme__avatar" />
+        <a target='_blank' href="https://github.com/VanyaGachist2" className="aboutme__link">GitHub</a>
+        <img alt="аватарка пользователя данной страницы" src={avatar} className="aboutme__avatar" />
       </article>
     </section>
   )

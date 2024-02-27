@@ -8,7 +8,7 @@ function Register() {
     logo={logo} 
     title='Добро пожаловать!'
     subtitle='Уже зарегистрированы?'
-    link='/sign-in'
+    link='/signin'
     auth='Войти'
     >
       <label className="registration__label">Имя</label>
@@ -17,6 +17,8 @@ function Register() {
             id="name"
             type="text"
             placeholder="Иван"
+            minLength='2'
+            maxLength='30'
             required
             className='registration__input'
           />
@@ -34,6 +36,8 @@ function Register() {
               name="password"
               id="password"
               type="password"
+              minLength='8'
+              maxLength='30'
               required
               className='registration__input'
               placeholder='password'

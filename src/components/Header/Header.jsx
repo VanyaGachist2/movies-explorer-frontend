@@ -17,7 +17,7 @@ function Header({ openBurger }) {
             <Link to='/' className='header__img'><img alt='логотип' src={logo} className='header__logo' /></Link>
             <div className='header__links'>
               <Link to="/movies" className='header__film'>Фильмы</Link>
-              <Link to='/movies' className='header__film'>Сохранённые фильмы</Link>
+              <Link to='/saved-movies' className='header__film'>Сохранённые фильмы</Link>
             </div>
             <Link to='/profile' className='header__main'>
               Аккаунт
@@ -31,8 +31,8 @@ function Header({ openBurger }) {
           <section className='header__container'>
             <img alt='логотип' src={logo} className='header__logo' />
             <nav className='header__auth'>
-              <Link to='/sign-up' className='header__link header__signup'>Регистрация</Link>
-              <Link to='/sign-in' className='header__link header__signin'>Войти</Link>
+              <Link to='/signup' className='header__link header__signup'>Регистрация</Link>
+              <Link to='/signin' className='header__link header__signin'>Войти</Link>
             </nav>
           </section>
         )}

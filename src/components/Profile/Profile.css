@@ -88,6 +88,7 @@
   line-height: 16px;
   padding-bottom: 70px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .profile__out:hover {

@@ -41,6 +41,11 @@
   color: rgb(255, 255, 255);
 }
 
+.registration__input:focus {
+  outline: 1px solid gray;
+  box-shadow:  5px 5px 10px #808080;
+}
+
 .registration__button {
   margin-top: 95px;
   width: 100%;

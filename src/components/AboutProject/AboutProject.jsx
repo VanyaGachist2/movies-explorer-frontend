@@ -1,9 +1,9 @@
 import './AboutProject.css';
 import TitleMain from '../TitleMain/TitleMain.jsx';
 
-function AboutProject() {
+function AboutProject({ refer }) {
   return (
-    <section className="project">
+    <section ref={refer} className="project">
       <article className="project__container">
         <TitleMain name='О проекте' />
         <ul className='project__lists'>

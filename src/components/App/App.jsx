@@ -35,11 +35,11 @@ function App() {
             <Footer />
           </>
         } />
-        <Route path='/sign-up' element={
+        <Route path='/signup' element={
           <Register />
         } 
         />
-        <Route path='/sign-in' element={
+        <Route path='/signin' element={
           <Login />
         } />
         <Route path='*' element={

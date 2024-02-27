@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import './Navigation.css';
+import logoProfile from '../../images/humanlogo.svg';
 
 function Nav({ burger, closeBurgerMenu }) {
 
@@ -19,10 +20,12 @@ function Nav({ burger, closeBurgerMenu }) {
         <Link onClick={closeAndToLink} className={`nav__link 
         ${location.pathname === '/movies' ? 'nav__link_active' : ''}`} to='/movies'>Фильмы</Link>
         <Link onClick={closeAndToLink} className={`nav__link 
-        ${location.pathname === '/saved-movies' ? 'nav__link_active' : ''}`} to='/movies'>Сохранённые фильмы</Link>
+        ${location.pathname === '/saved-movies' ? 'nav__link_active' : ''}`} to='/saved-movies'>Сохранённые фильмы</Link>
         <Link to='/profile' className='nav__acount'>
           Аккаунт
-          <button className='nav__color' type='button'></button>  
+          <button className='nav__color' type='button'>
+            <img alt='лого человек' src={logoProfile} className='nav__human' />  
+          </button>  
         </Link>
       </div>
       <button onClick={handleOpenClick} type='button' className='nav__close'></button>

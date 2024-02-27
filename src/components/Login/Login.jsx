@@ -8,7 +8,7 @@ function Login() {
       logo={logo}
       title='Рады видеть!'
       subtitle='Ещё не зарегистрированы?'
-      link='/sign-up'
+      link='/signup'
       auth='Регистрация'
     >
     <label className='login__label'>E-mail</label>

@@ -11,10 +11,19 @@
 .search__form {
   padding-top: 70px;
   margin: 0 auto 0 auto;
-  max-width: 100%;
-  display: flex;
   position: relative;
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
+}
+
+.search__part {
+  border: none;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
 }
 
 .search__input {
@@ -28,6 +37,11 @@
   border: none;
   border-bottom: 1px solid rgb(66, 66, 66);
   color: white;
+}
+
+.search__input:focus {
+  border-bottom: 1px solid #b6b6b6;
+  outline: none;
 }
 
 .search__button {
@@ -49,11 +63,9 @@
 }
 
 .checkbox {
-  margin: 32px auto 0 auto;
+  margin: 32px 0 0 0;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
   padding: 0;
   max-width: 1140px;
 }
@@ -67,6 +79,11 @@
 	user-select: none;
   justify-self: center;
   max-height: 20px;
+  transition: opacity .3s ease;
+}
+
+.checkbox__button:hover {
+  opacity: .7;
 }
 
 .checkbox__switch {
@@ -126,10 +143,9 @@
   }
 
   .checkbox {
-    justify-content: flex-start;
     gap: 16px;
     flex-direction: row-reverse;
-    margin: 29px 30px 0 0px;
+    margin: 29px 0 0 0px;
   }
 }
 
