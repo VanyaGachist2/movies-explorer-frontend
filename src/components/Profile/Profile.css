@@ -60,6 +60,10 @@
   text-align: right;
 }
 
+.profile__input:focus {
+  outline: none;
+}
+
 .profile__edit {
   max-width: 410px;
   width: 100%;
