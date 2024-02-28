@@ -45,6 +45,10 @@
   margin-bottom: 17px;
 }
 
+.profile__label:focus {
+  border-bottom: 1px solid rgb(197, 196, 196);
+}
+
 .profile__label:last-of-type {
   border-bottom: none;
   padding-bottom: 0;
