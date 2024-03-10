@@ -104,6 +104,10 @@
   gap: 7px;
 }
 
+.header__main_color_green {
+  background-color: rgb(7, 49, 67);
+}
+
 .header__main:hover {
   opacity: .7;
 }

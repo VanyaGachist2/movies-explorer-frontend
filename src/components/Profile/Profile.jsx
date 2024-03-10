@@ -1,12 +1,41 @@
-import { Link } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { useFormValid, validation } from '../../hooks/useFormValid';
 import './Profile.css';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 
-function Profile() {
+function Profile({ onOut, updateInfo }) {
+  const currentUser = useContext(CurrentUserContext);
+  const {
+    value,
+    handleChange,
+    setValue,
+  } = useFormValid(validation);
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+
+    updateInfo({
+      name: value.name,
+      email: value.email,
+    })
+  }
+
+  useEffect(() => {
+    setValue({
+      email: currentUser.email || '',
+      name: currentUser.name || '',
+    })
+  }, [currentUser]);
+
   return (
     <section className="profile">
       <article className="profile__container">
-        <h1 className="profile__title">Привет, Виталий!</h1>
-        <form className="profile__form">
+        <h1 className="profile__title">{`Привет, ${currentUser.name || ''}!`}</h1>
+        <form 
+          className="profile__form"
+          noValidate
+          onSubmit={handleSubmit}
+          >
           <label className='profile__label'>Имя
             <input 
               className='profile__input'
@@ -14,6 +43,8 @@ function Profile() {
               name='name'
               id='name'
               required
+              onChange={handleChange}
+              value={value.name || ''}
               placeholder='Виталий'
             />
           </label>
@@ -23,13 +54,15 @@ function Profile() {
               type='email'
               name='email'
               id='email'
+              value={value.email || ''}
+              onChange={handleChange}
               required
               placeholder='pochta@yandex.ru'
             />
           </label>
+          <button type='submit' className='profile__edit'>Редактировать</button>
         </form>
-        <button type='button' className='profile__edit'>Редактировать</button>
-        <Link to='/' type='button' className='profile__out'>Выйти из аккаунта</Link>
+        <p onClick={onOut} className='profile__out'>Выйти из аккаунта</p>
       </article>
     </section>
   )
