@@ -3,9 +3,14 @@ import './SearchForm.css';
 
 function SearchForm({ onMovie }) {
   const [ search, setSearch ] = useState('');
+  const [ shortFilm, setShortFilm ] = useState(false);
   
   const handleChange = (evt) => {
     setSearch(evt.target.value);
+  }
+
+  const handleChangeCheckbox = (evt) => {
+    setShortFilm(evt.target.checkbox);
   }
 
   const handleSubmit = (evt) => {
@@ -46,7 +51,10 @@ function SearchForm({ onMovie }) {
               <input 
                 type="checkbox" 
                 className="checkbox__switch" 
-                placeholder='переключатель чекбокса' />
+                placeholder='переключатель чекбокса'
+                onChange={handleChangeCheckbox}
+                value={shortFilm}
+                />
               <span className="checkox__switch_ios"></span>
             </label>
             <p className='checkbox__name'>Короткометражки</p>

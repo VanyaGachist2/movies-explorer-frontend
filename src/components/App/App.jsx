@@ -1,7 +1,7 @@
 import complete from '../../images/yes.svg';
 import error from '../../images/no.svg';
 
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -20,6 +20,7 @@ import InfoTooltip from '../InfoTooltip/InfoTooltip.jsx';
 import CurrentUserContext from '../../contexts/CurrentUserContext.js';
 
 function App() {
+  const location = useLocation();
   // бургер
   const [ burgerMenu, setBurgerMenu ] = useState(false);
   
@@ -101,8 +102,9 @@ function App() {
           console.log(err);
         });
       apiMain.getSaveFilms()
-        .then(data => {
-          setSavedMovies(data)
+        .then((data) => {
+          const sortData = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+          setSavedMovies(sortData)
         })
         .catch(err => {
           console.log(err);
@@ -123,6 +125,7 @@ function App() {
 
   const handleExit = () => {
     localStorage.removeItem('jwt');
+    localStorage.removeItem('movies');
     setLoggedIn(false);
     navigate('/', { replace: true });
   }
@@ -130,12 +133,13 @@ function App() {
   const handleLikeMovie = (data) => {
     apiMain.addToSavedMovies(data)
       .then((newCard) => {
-        setSavedMovies(newCard, ...savedMovies);
+        setSavedMovies([newCard, ...savedMovies,]);
       })
       .catch((err) => {
         console.log(err);
       })
   }
+
 
   // блок с попапами
 
