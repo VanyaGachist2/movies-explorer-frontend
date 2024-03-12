@@ -3,7 +3,7 @@ import logo from '../../images/logo.svg';
 import humanLogo from '../../images/humanlogo.svg';
 import { Link, useLocation } from 'react-router-dom';
 
-function Header({ openBurger }) {
+function Header({ openBurger, loggedIn }) {
   const location = useLocation();
 
   return (
@@ -12,14 +12,19 @@ function Header({ openBurger }) {
       || location.pathname === '/profile'
       || location.pathname === '/saved-movies'
       ? 'header_color_dark' : ''}`}>
-        {location.pathname === '/movies' || location.pathname === '/profile' || location.pathname === '/saved-movies' ? (
-          <section className='header__container header__container_color_dark'>
+        {loggedIn ? (
+          <section 
+            className={`header__container ${location.pathname === '/' ? '' : 'header__container_color_dark'}`}>
             <Link to='/' className='header__img'><img alt='логотип' src={logo} className='header__logo' /></Link>
             <div className='header__links'>
               <Link to="/movies" className='header__film'>Фильмы</Link>
               <Link to='/saved-movies' className='header__film'>Сохранённые фильмы</Link>
             </div>
-            <Link to='/profile' className='header__main'>
+            <Link 
+              to='/profile' 
+              className={`header__main ${location.pathname === '/movies' 
+              || location.pathname === '/profile'
+              || location.pathname === '/saved-movies' ? '' : 'header__main_color_green'} `}>
               Аккаунт
               <button className='header__color' type='button'>
                 <img className='header__human' src={humanLogo} alt='лого аккаунта' />  
