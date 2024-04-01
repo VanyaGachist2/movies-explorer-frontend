@@ -1,4 +1,11 @@
 .movies {
   margin: 0;
   padding: 0;
+  background-color: rgb(32, 32, 32);
 }
+
+.movies__container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+

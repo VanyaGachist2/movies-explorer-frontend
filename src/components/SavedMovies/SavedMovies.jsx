@@ -2,28 +2,43 @@ import SearchForm from "../SearchForm/SearchForm.jsx"
 import MoviesCardList from "../MoviesCardList/MoviesCardList.jsx"
 import './SavedMovies.css';
 import { useEffect, useState } from "react";
+import { allSearchFilteredMovies, checkBoxMovie } from "../../utils/searchFilter.js";
 
-function SavedMovies ({ savedMovies }) {
+function SavedMovies ({ savedMovies, onDelete }) {
   const [ searchQuerySaved, setSearchQuerySaved ] = useState('');
   const [ showSavedMovies, setShowSavedMovies ] = useState(savedMovies);
+  const [ isShort, setIsShort ] = useState(false);
 
-  const handleSearch = (value) => {
-    setSearchQuerySaved(value);
-    const result = savedMovies.filter(m => m.nameRU.toLowerCase().includes(value.toLowerCase()));
-    setShowSavedMovies(result);
+  const handleChange = (evt) => {
+    setSearchQuerySaved(evt.target.value);
   }
 
-  console.log(savedMovies);
-  useEffect(() => {
-    localStorage.setItem('findSaved', searchQuerySaved);
-  }, [searchQuerySaved]);
+  const handleChangeCheckBox = () => {
+    setIsShort(!isShort);
+  }
+
+  const handleSearch = () => {
+    const result = allSearchFilteredMovies(savedMovies, searchQuerySaved);
+    if (!isShort) {
+      setShowSavedMovies(result);
+    } else {
+      setShowSavedMovies(checkBoxMovie(result));
+    }
+  }
 
   return (
     <main className='savedmovies'>
-      <SearchForm onMovie={handleSearch} />
-      {savedMovies.length > 0 && 
-        <MoviesCardList movies={savedMovies} savedMovies={showSavedMovies} />
+      <section className="savedmovies__container">
+      <SearchForm onMovie={handleSearch} handleChange={handleChange} short={isShort} isShort={handleChangeCheckBox} />
+      {savedMovies.length > 0 ? (
+        <MoviesCardList movies={showSavedMovies} onDelete={onDelete} savedMovies={savedMovies} />
+      ) : (
+        <div className="savedmovies__block">
+          <h1 className="savedmovies__nothing">Сохраненных карточек нет</h1>
+        </div>
+      )
       }
+      </section>
     </main>
   )
 }
