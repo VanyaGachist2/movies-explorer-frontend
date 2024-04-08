@@ -58,7 +58,7 @@ class MainApi {
     .then(this._ifCheck);
   }
 
-  updateInfo(name, email) {
+  updateInfo(email, name) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: {
@@ -66,8 +66,8 @@ class MainApi {
         Authorization: `Bearer ${localStorage.getItem('jwt')}`
       },
       body: JSON.stringify({
-        name: name,
         email: email,
+        name: name,
       }),
       credentials: 'include',
     })
@@ -99,7 +99,7 @@ class MainApi {
   }
 
   deleteMovie(id) {
-    return fetch(`${this._url}/${id}`, {
+    return fetch(`${this._url}/movies/${id}`, {
       method: 'DELETE',
       credentials: 'include',
       headers: {

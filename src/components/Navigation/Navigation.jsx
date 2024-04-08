@@ -21,7 +21,7 @@ function Nav({ burger, closeBurgerMenu }) {
         ${location.pathname === '/movies' ? 'nav__link_active' : ''}`} to='/movies'>Фильмы</Link>
         <Link onClick={closeAndToLink} className={`nav__link 
         ${location.pathname === '/saved-movies' ? 'nav__link_active' : ''}`} to='/saved-movies'>Сохранённые фильмы</Link>
-        <Link to='/profile' className='nav__acount'>
+        <Link onClick={closeAndToLink} to='/profile' className='nav__acount'>
           Аккаунт
           <button className='nav__color' type='button'>
             <img alt='лого человек' src={logoProfile} className='nav__human' />  

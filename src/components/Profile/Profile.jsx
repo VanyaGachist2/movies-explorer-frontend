@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useFormValid, validation } from '../../hooks/useFormValid';
 import './Profile.css';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
@@ -9,7 +9,9 @@ function Profile({ onOut, updateInfo }) {
     value,
     handleChange,
     setValue,
-  } = useFormValid(validation);
+    error,
+    isValid,
+  } = useFormValid(validation, 'profile');
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -26,6 +28,8 @@ function Profile({ onOut, updateInfo }) {
       name: currentUser.name || '',
     })
   }, [currentUser]);
+
+  const formDisabled = value.name === currentUser.name && value.email === currentUser.email ? true : false;
 
   return (
     <section className="profile">
@@ -47,6 +51,9 @@ function Profile({ onOut, updateInfo }) {
               value={value.name || ''}
               placeholder='Виталий'
             />
+            {error.name && (
+              <p className='profile__error profile__error_for_name'>{error.name}</p>
+            )}
           </label>
           <label className='profile__label'>E-mail
             <input 
@@ -59,8 +66,15 @@ function Profile({ onOut, updateInfo }) {
               required
               placeholder='pochta@yandex.ru'
             />
+            {error.email && (
+              <p className='profile__error'>{error.email}</p>
+            )}
           </label>
-          <button type='submit' className='profile__edit'>Редактировать</button>
+          <button 
+          type='submit' 
+          className={`profile__edit ${formDisabled || !isValid ? 'profile__edit_disabled' : ''}`}
+          disabled={formDisabled || !isValid}
+          >Редактировать</button>
         </form>
         <p onClick={onOut} className='profile__out'>Выйти из аккаунта</p>
       </article>

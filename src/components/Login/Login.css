@@ -98,6 +98,12 @@
   justify-content: center;
 }
 
+.login__button_disabled {
+  background-color: white;
+  color: gray;
+  opacity: .8;
+}
+
 .login__button:hover {
   opacity: .8;
 }

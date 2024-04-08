@@ -8,11 +8,13 @@ function Login({ handleLogin }) {
     handleChange,
     value,
     error,
-  } = useFormValid(validation);
+    isValid,
+  } = useFormValid(validation, 'login');
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     
+
     handleLogin(value.email, value.password);
   }
 
@@ -53,7 +55,11 @@ function Login({ handleLogin }) {
       {error.password && (
         <span className='login__error'>{error.password}</span>
       )}
-      <button className="login__button" type="submit">Войти</button>
+      <button 
+      className={`login__button ${!isValid ? 'login__button_disabled' : ''}`}
+      type="submit"
+      disabled={!isValid}
+      >Войти</button>
     </FormForAuth>
   )
 }

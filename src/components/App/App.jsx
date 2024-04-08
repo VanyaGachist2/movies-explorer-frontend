@@ -18,29 +18,30 @@ import ProtectedRoute from '../../utils/ProtectedRoute/ProtectedRoute.jsx';
 import { apiMain } from '../../utils/MainApi.js';
 import InfoTooltip from '../InfoTooltip/InfoTooltip.jsx';
 import CurrentUserContext from '../../contexts/CurrentUserContext.js';
+import Preloader from '../Preloader/Preloader.jsx';
 
 function App() {
-  const location = useLocation();
   // бургер
   const [ burgerMenu, setBurgerMenu ] = useState(false);
   
   // аккаунт
   const [ loggedIn, setLoggedIn ] = useState(false);
   const [ userData, setUserData ] = useState({});
-
   // попапы
   const [ textPopup, setTextPopup ] = useState('');
   const [ popupStatus, setPopupStatus ] = useState(false);
   const [ logoPopup, setLogoPopup ] = useState(null);
 
+  const [ preloader, setPreloader ] = useState(false);
+
   const [ savedMovies, setSavedMovies ] = useState([]);
 
   const navigate = useNavigate();
 
-
   // блок с регистрацией и авторизацией
   const handleRegistration = (name, email, password) => {
     const data = { name, email, password };
+    setPreloader(true);
     apiMain.registration(data)
       .then(() => {
         setPopupStatus(true);
@@ -50,11 +51,18 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+        setPopupStatus(true);
+        setTextPopup('Что-то пошло не так');
+        setLogoPopup(error);
+      })
+      .finally(() => {
+        setPreloader(false);
       })
   }
 
   const handleLogin = (email, password) => {
     const data = { email, password };
+    setPreloader(true);
     apiMain.login(data)
       .then((res) => {
         if (res && res.token) {
@@ -68,6 +76,14 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+        setPopupStatus(true);
+        setTextPopup('Что-то пошло не так');
+        setLogoPopup(error);
+      })
+      .finally(() => {
+        setInterval(() => {
+          setPreloader(false);
+        }, 2000)
       })
   }
 
@@ -114,33 +130,69 @@ function App() {
 
 
   const updateUserInfo = (userData) => {
+    setPreloader(true);
     apiMain.updateInfo(userData.email, userData.name)
       .then((newUser) => {
         setUserData(newUser);
+        setPopupStatus(true);
+        setTextPopup('Обновление прошло успешно!');
+        setLogoPopup(complete);
       })
       .catch(err => {
         console.log(err);
+        setPopupStatus(true);
+        setTextPopup('Ошибка!');
+        setLogoPopup(error);
+      })
+      .finally(() => {
+        setPreloader(false);
       })
   }
 
   const handleExit = () => {
-    localStorage.removeItem('jwt');
-    localStorage.removeItem('movies');
+    localStorage.clear();
     setLoggedIn(false);
     navigate('/', { replace: true });
   }
 
   const handleLikeMovie = (data) => {
-    apiMain.addToSavedMovies(data)
+      apiMain.addToSavedMovies(data)
       .then((newCard) => {
-        setSavedMovies([newCard, ...savedMovies,]);
+        const updatedSavedMovies = [newCard, ...savedMovies]; 
+        setSavedMovies(updatedSavedMovies);
+        apiMain.getSaveFilms()
+        .then((data) => {
+          const sortData = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+          setSavedMovies(sortData)
+        })
+        .catch(err => {
+          console.log(err);
+        })
       })
       .catch((err) => {
         console.log(err);
       })
+  }  
+  
+  const handleCardDelete = (card) => {
+      apiMain.deleteMovie(card)
+        .then(() => {
+          setSavedMovies(cards => cards.filter((c) => c._id !== card._id));
+          apiMain.getSaveFilms()
+            .then((data) => {
+              const sortData = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+              setSavedMovies(sortData)
+            })
+            .catch(err => {
+              console.log(err);
+            })
+        })
+        .catch((err) => {
+          console.log(card._id);
+          console.log(err);
+        })
   }
-
-
+  
   // блок с попапами
 
   const openBurgerMenu = () => {
@@ -160,6 +212,7 @@ function App() {
       <CurrentUserContext.Provider value={userData}>
       <Nav burger={burgerMenu} closeBurgerMenu={closeBurgerMenu} />
       <InfoTooltip isOpen={popupStatus} onClose={closePopups} name={textPopup} logo={logoPopup} />
+      <Preloader isCard={false} isOpen={preloader} />
       <>
       <Routes>
         <Route exact path='/' element={
@@ -188,6 +241,7 @@ function App() {
               loggedIn={loggedIn}
               onLike={handleLikeMovie}
               savedMovies={savedMovies}
+              onDelete={handleCardDelete}
             />
             <Footer />
           </>
@@ -200,6 +254,7 @@ function App() {
               element={SavedMovies}
               loggedIn={loggedIn}
               savedMovies={savedMovies}
+              onDelete={handleCardDelete}
             />
             <Footer />
           </>

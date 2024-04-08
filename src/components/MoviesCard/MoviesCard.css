@@ -47,7 +47,7 @@
 }
 
 .cards__check {
-  background-image: url("../../images/save8.svg");
+  background-image: url("../../images/icon_active.svg");
   background-position: center;
   background-color: transparent;
   border: none;
@@ -59,13 +59,13 @@
 }
 
 .cards__check_not {
-  background-image: url("../../images/cards_not.svg");
+  background-image: url("../../images/icon.svg");
   background-position: center;
   background-color: transparent;
   border: none;
   background-size: 100% 100%;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   margin: 0;
   cursor: pointer;
 }
@@ -92,6 +92,9 @@
 
 .cards__check_color_dark {
   background-image: url("../../images/save8.svg");
+  width: 20px;
+  height: 20px;
+  margin: 0;
 }
 
 @media screen and (max-width: 1181px) {

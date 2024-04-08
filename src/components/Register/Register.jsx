@@ -8,16 +8,14 @@ function Register({ handleRegister }) {
     handleChange,
     error,
     value,
-  } = useFormValid(validation);
+    isValid,
+  } = useFormValid(validation, 'register');
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
     handleRegister(value.name, value.email, value.password);
   }
-
-  const formValid = Object.keys(error).length === 0;
-  
 
   return (
     <FormForAuth 
@@ -50,7 +48,7 @@ function Register({ handleRegister }) {
               id="email"
               type="email"
               placeholder="pochta@yandex.ru"
-              className={`registration__input ${error.name && 'registration__input_error'}`}
+              className={`registration__input ${error.email && 'registration__input_error'}`}
               value={value.email || ''}
               onChange={handleChange}
               required
@@ -74,7 +72,7 @@ function Register({ handleRegister }) {
             {error.password && (
               <span className='registration__error'>{error.password}</span>
             )}
-          <button disabled={!formValid} className={`registration__button ${!formValid ? 'registration__button_disabled' : ''}`} type="submit">Зарегистрироваться</button>
+          <button disabled={!isValid} className={`registration__button ${!isValid ? 'registration__button_disabled' : ''}`} type="submit">Зарегистрироваться</button>
         </FormForAuth>
   )
 }

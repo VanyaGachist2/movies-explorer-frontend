@@ -1,13 +1,21 @@
 import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
 
-function MoviesCard({ movie, onLike, onDelete, isLiked }) {
+function MoviesCard({ movie, onLike, onDelete, savedMovies}) {
   const location = useLocation();
-
-  const formatFilm = (minute) => {
-    const h = Math.floor(minute / 60);
-    const m = minute % 60;
-
+  // const isLiked = savedMovies.some(m => movie.id === m.movieId)
+  const isLiked = savedMovies.some((m) => {
+    // console.log(m)
+    // console.log(movie.id)
+    // console.log(m.movieId)
+    // console.log(movie)
+    return m.movieId === movie.id;
+  })
+  const moviesInSavePage = savedMovies.find(i => i.movieId === movie.id);
+  
+  const formatFilm = (dur) => {
+    const h = Math.floor(dur / 60);
+    const m = dur % 60;
     if(h === 0) {
       return `${m}м`;
     } else if (m === 0) {
@@ -18,46 +26,47 @@ function MoviesCard({ movie, onLike, onDelete, isLiked }) {
   const duration = formatFilm(movie.duration);
 
   const handleLike = () => {
-    onLike({
-      country: movie.country,
-      director: movie.director,
-      duration: movie.duration,
-      year: movie.year,
-      description: movie.description,
-      image: `https://api.nomoreparties.co/${movie.image.url}`,
-      trailerLink: movie.trailerLink,
-      nameRU: movie.nameRU,
-      nameEN: movie.nameEN,
-      thumbnail: `https://api.nomoreparties.co/${movie.image.formats.thumbnail.url}`,
-      movieId: movie.id,
-    })
-  }
-
-  const handleDelete = () => {
-    onDelete(movie)
-  }
-
-  const handleLikeOrDeleteLike = () => {
-    if(!isLiked) {
-      handleLike()
+    if(isLiked) {
+      onDelete(moviesInSavePage._id)
     } else {
-      handleDelete()
+      onLike({
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: `https://api.nomoreparties.co${movie.image.url}`,
+        trailerLink: movie.trailerLink,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
+        thumbnail: `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`,
+        movieId: movie.id,
+      })
     }
+  }
+
+  const handleCardDelete = () => {
+    onDelete(movie._id)
   }
 
   return (
     <li className='cards__element'>
-      <img className='cards__image' src={`https://api.nomoreparties.co/${movie.image.url}`} alt={movie.nameRU || movie.nameEN} />
+      <a href={movie.trailerLink} target='_blank'>
+        <img className='cards__image'
+        src={
+          location.pathname === '/movies' ?
+          `https://api.nomoreparties.co${movie.image.url}` : movie.image} alt={movie.nameRU || movie.nameEN} />
+      </a>
       <div className='cards__info'>
         <div className='cards__names'>
           <h2 className='cards__heading'>{movie.nameRU || movie.nameEN}</h2>
           <p className='cards__time'>{duration}</p>
         </div>
         {location.pathname === '/movies' ? (
-          <button type='button' onClick={handleLikeOrDeleteLike}
-          className={`cards__check_not ${isLiked ? 'cards__check' : ''}`}></button>
-        ) : (
-          <button onClick={handleDelete} type='button' className='cards__delete'></button>
+          <button type='button' onClick={handleLike}
+          className={`cards__check_not ${isLiked ? 'cards__check_color_dark' : ''}`}></button>
+          ) : (
+          <button onClick={handleCardDelete} type='button' className='cards__delete'></button>
         )}
       </div>
     </li>
