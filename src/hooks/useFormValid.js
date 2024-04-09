@@ -19,8 +19,8 @@ export function useFormValid(validate, context) {
   }
 
   useEffect(() => {
-    setIsValid(Object.keys(error).length === 0);
-  }, [error]);
+    setIsValid(Object.keys(error).length === 0 && Object.keys(value).length > 0);
+  }, [error, value]);
 
   return {
     handleChange,

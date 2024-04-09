@@ -112,8 +112,5 @@ class MainApi {
 }
 
 export const apiMain = new MainApi({
-  url: 'https://api.moviesfront.nomoredomainswork.ru/',
-  headers: {
-    "Content-Type": "application/json",
-  }
+  url: 'https://api.vanyafront.nomoredomainswork.ru',
 })
