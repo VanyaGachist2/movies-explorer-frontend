@@ -112,7 +112,7 @@ class MainApi {
 }
 
 export const apiMain = new MainApi({
-  url: 'http://localhost:3000',
+  url: 'https://api.moviesfront.nomoredomainswork.ru/',
   headers: {
     "Content-Type": "application/json",
   }

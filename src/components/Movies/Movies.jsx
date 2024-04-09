@@ -89,7 +89,7 @@ function Movies({ onLike, onDelete, savedMovies }) {
         })
         .catch(err => {
           console.log(err)
-          error(true);
+          setError(true);
           setText('Произошла ошибка поиска, посмотрите в консоли!');
         })
         .finally(() => {
