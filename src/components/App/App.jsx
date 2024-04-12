@@ -1,7 +1,7 @@
 import complete from '../../images/yes.svg';
 import error from '../../images/no.svg';
 
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate, Navigate, useLocation } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -21,6 +21,7 @@ import CurrentUserContext from '../../contexts/CurrentUserContext.js';
 import Preloader from '../Preloader/Preloader.jsx';
 
 function App() {
+  const location = useLocation();
   // бургер
   const [ burgerMenu, setBurgerMenu ] = useState(false);
   
@@ -45,9 +46,7 @@ function App() {
     apiMain.registration(data)
       .then(() => {
         setPopupStatus(true);
-        setTextPopup('Вы успешно зарегистрировались!');
-        setLogoPopup(complete);
-        navigate('/signin', { replace: true });
+        handleLogin(email, password);
       })
       .catch((err) => {
         console.log(err);
@@ -88,12 +87,13 @@ function App() {
   }
 
   const handleCheckToken = () => {
+    const path = location.pathname;
     if (localStorage.getItem('jwt')) {
       const jwt = localStorage.getItem('jwt');
       apiMain.checkToken(jwt)
         .then(() => {
           setLoggedIn(true);
-          navigate('/movies', { replace: true });
+          navigate(path, { replace: true });
         })
         .catch(() => {
           setLoggedIn(false);
@@ -158,34 +158,22 @@ function App() {
   const handleLikeMovie = (data) => {
       apiMain.addToSavedMovies(data)
       .then((newCard) => {
-        const updatedSavedMovies = [newCard, ...savedMovies]; 
-        setSavedMovies(updatedSavedMovies);
-        apiMain.getSaveFilms()
-        .then((data) => {
-          const sortData = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-          setSavedMovies(sortData)
-        })
-        .catch(err => {
-          console.log(err);
-        })
+        if (newCard) {
+          const updatedSavedMovies = [...savedMovies, newCard];
+          setSavedMovies(updatedSavedMovies);
+        } else {
+          console.log('Данные не полученны!');
+        }
       })
       .catch((err) => {
         console.log(err);
       })
   }  
-  
+
   const handleCardDelete = (card) => {
       apiMain.deleteMovie(card)
         .then(() => {
-          setSavedMovies(cards => cards.filter((c) => c._id !== card._id));
-          apiMain.getSaveFilms()
-            .then((data) => {
-              const sortData = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-              setSavedMovies(sortData)
-            })
-            .catch(err => {
-              console.log(err);
-            })
+          setSavedMovies(movie => movie.filter(c => c._id !== card._id));
         })
         .catch((err) => {
           console.log(card._id);
@@ -222,18 +210,20 @@ function App() {
             <Footer />
           </>
         } />
-        <Route path='/signup' element={
+        <Route exact path='/signup' element={
+          loggedIn ? <Navigate to='/' replace /> : 
           <Register handleRegister={handleRegistration} />
         } 
         />
-        <Route path='/signin' element={
+        <Route exact path='/signin' element={
+          loggedIn ? <Navigate to='/' replace /> :
           <Login handleLogin={handleLogin} />
         } />
         <Route path='*' element={
           <NotFoundPage />
         } 
         />
-        <Route path='/movies' element={
+        <Route exact path='/movies' element={
           <>
             <Header openBurger={openBurgerMenu} loggedIn={loggedIn} />
             <ProtectedRoute
@@ -247,7 +237,7 @@ function App() {
           </>
         }
         />
-        <Route path='/saved-movies' element={
+        <Route exact path='/saved-movies' element={
           <>
             <Header openBurger={openBurgerMenu} loggedIn={loggedIn} />
             <ProtectedRoute
@@ -261,7 +251,7 @@ function App() {
         } 
 
         />
-        <Route path='/profile' element={
+        <Route exact path='/profile' element={
           <>
             <Header openBurger={openBurgerMenu} loggedIn={loggedIn} />
             <ProtectedRoute 

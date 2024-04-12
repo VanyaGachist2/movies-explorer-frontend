@@ -3,16 +3,10 @@ import './MoviesCard.css';
 
 function MoviesCard({ movie, onLike, onDelete, savedMovies}) {
   const location = useLocation();
-  // const isLiked = savedMovies.some(m => movie.id === m.movieId)
   const isLiked = savedMovies.some((m) => {
-    // console.log(m)
-    // console.log(movie.id)
-    // console.log(m.movieId)
-    // console.log(movie)
     return m.movieId === movie.id;
   })
   const moviesInSavePage = savedMovies.find(i => i.movieId === movie.id);
-  
   const formatFilm = (dur) => {
     const h = Math.floor(dur / 60);
     const m = dur % 60;
