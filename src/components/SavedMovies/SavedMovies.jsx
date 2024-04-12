@@ -19,8 +19,6 @@ function SavedMovies ({ savedMovies, onDelete }) {
   const [ validError, setValidError ] = useState(false);
   const [ validButton, setValidButton ] = useState(searchQuerySaved.length < 1);
 
-  console.log(savedMovies);
-
   const handleChange = (evt) => {
     const inputSaved = evt.target.value;
     setSearchQuerySaved(inputSaved);

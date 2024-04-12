@@ -158,12 +158,9 @@ function App() {
   const handleLikeMovie = (data) => {
       apiMain.addToSavedMovies(data)
       .then((newCard) => {
-        if (newCard) {
-          const updatedSavedMovies = [...savedMovies, newCard];
-          setSavedMovies(updatedSavedMovies);
-        } else {
-          console.log('Данные не полученны!');
-        }
+        console.log(newCard)
+        const updatedSavedMovies = [...savedMovies, newCard];
+        setSavedMovies(updatedSavedMovies);
       })
       .catch((err) => {
         console.log(err);
@@ -171,7 +168,7 @@ function App() {
   }  
 
   const handleCardDelete = (card) => {
-      apiMain.deleteMovie(card)
+      apiMain.deleteMovie(card._id)
         .then(() => {
           setSavedMovies(movie => movie.filter(c => c._id !== card._id));
         })

@@ -35,9 +35,7 @@ function MoviesCardList({ movies, onLike, onDelete, savedMovies, textError, isOp
         <Preloader isOpen={isOpen} isCard={isCard} />
         <ul className='cards__list'>
         {location.pathname === '/saved-movies' ? (
-          movies.length > 0 ? (
             movies.map((m) => {
-              console.log(m);
               return (
                 <MoviesCard 
                 key={m.id || m._id}
@@ -47,9 +45,6 @@ function MoviesCardList({ movies, onLike, onDelete, savedMovies, textError, isOp
               />
               )
             })
-          ) : (
-            <h2 className='cards__error'>Нет сохраненных фильмов</h2>
-          )
         ) : ( 
           !textError ? (
             movies.slice(0, visibleCard).map(m => (

@@ -21,7 +21,7 @@ function MoviesCard({ movie, onLike, onDelete, savedMovies}) {
 
   const handleLike = () => {
     if(isLiked) {
-      onDelete(moviesInSavePage._id)
+      onDelete(moviesInSavePage)
     } else {
       onLike({
         country: movie.country,
@@ -40,7 +40,7 @@ function MoviesCard({ movie, onLike, onDelete, savedMovies}) {
   }
 
   const handleCardDelete = () => {
-    onDelete(movie._id)
+    onDelete(movie)
   }
 
   return (
