@@ -75,15 +75,10 @@ function SavedMovies ({ savedMovies, onDelete }) {
 
   const handleSubmit = () => {
     const result = allSearchFilteredMovies(savedMovies, searchQuerySaved, isShort);
-    if (result.length === 0) {
-      setError(true);
-      setTextError('Таких фильмов нет');
+    if (isShort) {
+      setfilteredMovies(checkBoxMovie(result));
     } else {
-      setError(false);
-      setFirstText(false);
-      const filteredResult = isShort ? checkBoxMovie(result) : result;
-      setfilteredMovies(filteredResult);
-      setShowSavedMovies(result);
+      setfilteredMovies(result);
     }
   }
 
@@ -107,6 +102,15 @@ function SavedMovies ({ savedMovies, onDelete }) {
       setFirstText(false);
     }
   }, [showSavedMovies]);
+
+  useEffect(() => {
+    const result = allSearchFilteredMovies(savedMovies, searchQuerySaved, isShort);
+    if (isShort) {
+      setfilteredMovies(checkBoxMovie(result));
+    } else {
+      setfilteredMovies(result);
+    }
+  }, [savedMovies, searchQuerySaved, isShort])
 
   return (
     <main className='savedmovies'>
