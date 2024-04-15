@@ -1,7 +1,7 @@
 import SearchForm from "../SearchForm/SearchForm.jsx"
 import MoviesCardList from "../MoviesCardList/MoviesCardList.jsx"
 import './SavedMovies.css';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { allSearchFilteredMovies, checkBoxMovie } from "../../utils/searchFilter.js";
 
 function SavedMovies ({ savedMovies, onDelete }) {
@@ -18,6 +18,28 @@ function SavedMovies ({ savedMovies, onDelete }) {
 
   const [ validError, setValidError ] = useState(false);
   const [ validButton, setValidButton ] = useState(searchQuerySaved.length < 1);
+
+  useEffect(() => {
+    setShowSavedMovies(savedMovies);
+    setfilteredMovies(savedMovies);
+    if (savedMovies.length === 0) {
+      setFirstText(true);
+      setFirstTextMessage('Таких фильмов нет!');
+    } else {
+      setFirstText(false);
+    }
+  }, [savedMovies]);
+
+  useEffect(() => {
+    if (isShort) {
+      const updateMovies = checkBoxMovie(filteredMovies);
+      setShowSavedMovies(updateMovies);
+    } else {
+      setShowSavedMovies(filteredMovies);
+    }
+
+    localStorage.setItem('isShortSaved', JSON.stringify(isShort));
+  }, [isShort, filteredMovies]);
 
   const handleChange = (evt) => {
     const inputSaved = evt.target.value;
@@ -43,6 +65,12 @@ function SavedMovies ({ savedMovies, onDelete }) {
       setTextError('');
       setShowSavedMovies(updateMovies);
     }
+
+    if (!isShort) {
+      localStorage.setItem('isShortSaved', true);
+    } else {
+      localStorage.setItem('isShortSaved', false);
+    }
   }
 
   const handleSubmit = () => {
@@ -58,6 +86,27 @@ function SavedMovies ({ savedMovies, onDelete }) {
       setShowSavedMovies(result);
     }
   }
+
+  useEffect(() => {
+    if (localStorage.getItem('isShortSaved') === 'true') {
+      setIsShort(true);
+      setShowSavedMovies(checkBoxMovie(savedMovies));
+    } else {
+      setIsShort(false);
+      setShowSavedMovies(savedMovies);
+    }
+  }, [savedMovies]);
+
+  useEffect(() => {
+    if (showSavedMovies.length === 0) {
+      setFirstText(true);
+      setFirstTextMessage('Фильмы по данному фильтру не найдены');
+    } else {
+      setError(false);
+      setTextError('');
+      setFirstText(false);
+    }
+  }, [showSavedMovies]);
 
   return (
     <main className='savedmovies'>

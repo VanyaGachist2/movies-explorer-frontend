@@ -117,14 +117,14 @@ function App() {
         .catch((err) => {
           console.log(err);
         });
-      apiMain.getSaveFilms()
-        .then((data) => {
-          const sortData = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-          setSavedMovies(sortData)
-        })
-        .catch(err => {
-          console.log(err);
-        })
+          apiMain.getSaveFilms()
+          .then((data) => {
+            const sortData = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            setSavedMovies(sortData)
+          })
+          .catch(err => {
+            console.log(err);
+          })
     }
   }, [loggedIn]);
 
@@ -157,10 +157,11 @@ function App() {
 
   const handleLikeMovie = (data) => {
       apiMain.addToSavedMovies(data)
+      .then(res => res.json())
       .then((newCard) => {
-        console.log(newCard)
-        const updatedSavedMovies = [...savedMovies, newCard];
-        setSavedMovies(updatedSavedMovies);
+          console.log(newCard)
+          const updatedSavedMovies = [...savedMovies, newCard];
+          setSavedMovies(updatedSavedMovies);
       })
       .catch((err) => {
         console.log(err);
@@ -168,6 +169,17 @@ function App() {
   }  
 
   const handleCardDelete = (card) => {
+    if (location.pathname === '/movies') {
+      apiMain.deleteMovie(card._id)
+        .then(() => {
+          setSavedMovies(movie => movie.filter(c => c._id !== card._id));
+          console.log(card._id)
+        })
+        .catch((err) => {
+          console.log(card._id);
+          console.log(err);
+        })
+    } else if (location.pathname === '/saved-movies') {
       apiMain.deleteMovie(card._id)
         .then(() => {
           setSavedMovies(movie => movie.filter(c => c._id !== card._id));
@@ -176,7 +188,10 @@ function App() {
           console.log(card._id);
           console.log(err);
         })
+    }
   }
+
+  console.log(savedMovies);
   
   // блок с попапами
 

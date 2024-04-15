@@ -40,8 +40,9 @@ function MoviesCardList({ movies, onLike, onDelete, savedMovies, textError, isOp
                 <MoviesCard 
                 key={m.id || m._id}
                 movie={m}
-                savedMovies={savedMovies}
+                onLike={onLike}
                 onDelete={onDelete}
+                savedMovies={savedMovies}
               />
               )
             })
@@ -52,8 +53,8 @@ function MoviesCardList({ movies, onLike, onDelete, savedMovies, textError, isOp
                 key={m.id || m._id}
                 movie={m}
                 onLike={onLike}
-                savedMovies={savedMovies}
                 onDelete={onDelete}
+                savedMovies={savedMovies}
               />
             ))
           ) : (
