@@ -7,7 +7,7 @@ function MoviesCard({ movie, onLike, onDelete, savedMovies}) {
     return m.movieId === movie.id;
   })
   const moviesInSavePage = savedMovies.find(i => i.movieId === movie.id);
-  const formatFilm = (dur) => {
+  const convertingToTheCorrectFormat = (dur) => {
     const h = Math.floor(dur / 60);
     const m = dur % 60;
     if(h === 0) {
@@ -17,7 +17,7 @@ function MoviesCard({ movie, onLike, onDelete, savedMovies}) {
     }
     return `${h}ч${m}м`;
   }
-  const duration = formatFilm(movie.duration);
+  const duration = convertingToTheCorrectFormat(movie.duration);
 
   const handleLike = () => {
     if(isLiked) {
