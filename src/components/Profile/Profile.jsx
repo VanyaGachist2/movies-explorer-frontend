@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { useFormValid, validation } from '../../hooks/useFormValid';
 import './Profile.css';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
