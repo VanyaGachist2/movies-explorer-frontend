@@ -13,12 +13,16 @@
 ![HTML5](https://img.shields.io/badge/-HTML5-090909?style=for-the-badge&logo=HTML5)
 ![CSS3](https://img.shields.io/badge/-CSS3-090909?style=for-the-badge&logo=CSS3)
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+-------
 
 ## Установка
 - клонировать проект `git clone git@github.com:VanyaGachist2/movies-explorer-api.git`
 - установка зависимостей с помощью `npm i`
 - если пользоваться локально, то в папке `/src/utils/MainApi.js` и `/src/utils/MoviesApi.js`, поменять `url: https://api.vanyafront.nomoredomainswork.ru` и `url: https://api.nomoreparties.co/beatfilm-movies`, на `url: http://localhost:3000`
 - запустить сначала backend с помощью `npm run start` затем frontend `npm run start`
+---------
+## Пути
+
 Back-end: "https://github.com/VanyaGachist2/movies-explorer-api";
 Front-end: "https://github.com/VanyaGachist2/movies-explorer-frontend/tree/level-3"
 
