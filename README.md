@@ -6,6 +6,14 @@
 
 работа выполнялась по макету https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/Дипломный-проект?type=design&node-id=1-11614&mode=design&t=C6X9Y7B1yTDLzixI-0
 *dark-5*
+-------
+## технологии
+![React](https://img.shields.io/badge/-React-090909?style=for-the-badge&logo=React)
+![JavaScript](https://img.shields.io/badge/-JavaScript-090909?style=for-the-badge&logo=JavaScript)
+![HTML5](https://img.shields.io/badge/-HTML5-090909?style=for-the-badge&logo=HTML5)
+![CSS3](https://img.shields.io/badge/-CSS3-090909?style=for-the-badge&logo=CSS3)
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+
 ## Установка
 - клонировать проект `git clone git@github.com:VanyaGachist2/movies-explorer-api.git`
 - установка зависимостей с помощью `npm i`
